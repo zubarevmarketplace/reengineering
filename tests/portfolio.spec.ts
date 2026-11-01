@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
 
-test.beforeEach(async ({ page }) => { await page.goto("/"); await page.evaluate(() => document.fonts.ready); });
+test.beforeEach(async ({ page }) => { await page.goto(process.env.TEST_BASE_URL || "/"); await page.evaluate(() => document.fonts.ready); });
 
 for (const width of [320, 390, 768, 1024, 1440, 1920]) {
   test(`responsive layout and accessibility at ${width}px`, async ({ page }) => {
